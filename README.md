@@ -13,8 +13,8 @@
  $ npm run dev
  ```
 
-**Base URL** <br>
+**Base URL**: <br>
 http://localhost:3000
 
-**Environment Variable** <br>
+**Environment Variables** <br>
 > Save your environment variable in .env file and don't forget to add .env to .gitignore. You can also change the default port in .env file.
