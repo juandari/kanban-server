@@ -1,4 +1,4 @@
-const { Task } = require('../models')
+const { Task, Category } = require('../models')
 
 class TaskController {
   static async getTasks(req, res, next) {
@@ -24,7 +24,6 @@ class TaskController {
 
       return res.status(201).json({ task })
     } catch (err) {
-      console.log(err)
       return next(err)
     }
   }

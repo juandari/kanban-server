@@ -46,6 +46,9 @@ class CategoryController {
 
       return res.status(200).json({ category: category[1][0] })
     } catch (err) {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        return next({ name: 'UniqueCatError' })
+      }
       next(err)
     }
   }
