@@ -1,11 +1,13 @@
 const TaskController = require('../controllers/TaskController')
+const { authorize, authenticate, authorizeCreateTask } = require('../middleware/auth')
 
 const router = require('express').Router()
 
-router.get('/', TaskController.getTasks)
-router.post('/', TaskController.addTask)
-router.put('/:id', TaskController.editTask)
-router.patch('/:id', TaskController.updateTask)
-router.delete('/:id', TaskController.deleteTask)
+router.use(authenticate)
+router.post('/', authorizeCreateTask, TaskController.addTask)
+router.get('/:organization_id', TaskController.getTasks)
+router.put('/:id', authorize, TaskController.editTask)
+router.patch('/:id', authorize, TaskController.updateTask)
+router.delete('/:id', authorize, TaskController.deleteTask)
 
 module.exports = router

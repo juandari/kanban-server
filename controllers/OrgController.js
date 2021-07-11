@@ -25,6 +25,22 @@ class OrgController {
       next(err)
     }
   }
+
+  static async getOrg(req, res, next) {
+    const { id } = req.params
+
+    try {
+      const organization = await Organization.findOne({ where: { id } })
+
+      if (!organization) {
+        return next({ name: 'NotFoundError' })
+      }
+
+      return res.status(200).json(organization)
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = OrgController

@@ -2,8 +2,16 @@ const { Task, Category } = require('../models')
 
 class TaskController {
   static async getTasks(req, res, next) {
+    const { organization_id } = req.params
     try {
-      const tasks = await Task.findAll()
+      const tasks = await Task.findAll({
+        where: { organization_id },
+        include: Category,
+      })
+
+      if (!tasks.length) {
+        return next({ name: "NotFoundError"})
+      }
 
       res.status(200).json(tasks)
     } catch (err) {

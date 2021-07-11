@@ -289,6 +289,47 @@ None
       
 ---
 
+## Get an Organization
+Get an organiztion from an id.
+* **URL** <br>
+/organizations
+* **Method** <br>
+`GET`
+* **URL Params** <br>
+id
+* **Data Params** <br>
+None
+* **Success Response**
+	* **Code:** 200 <br>
+		**Content:**
+        ```
+        {
+          "id": 1,
+          "name": "Amarbank",
+          "logo": "https://1.bp.blogspot.com/-B_Ffk_uv-SY/Wl1xGNvhIjI/AAAAAAAANkU/2dVEIQe59qgaO8KCYCeW80fQ8OTxgLsSQCLcBGAs/s1600/Bank-Amar-Logo-transparent-png.png",
+          "createdAt": "2021-07-10T13:44:59.404Z",
+          "updatedAt": "2021-07-10T13:44:59.404Z"
+        }
+        ```
+* **Error Response:**
+    * **Code:** 404 <br>
+      **Content:**
+      ```
+      { 
+        "err": "Not Found"
+      }
+      ```
+
+    * **Code:** 500 <br>
+      **Content:**
+      ```
+      {
+        "err" : "Internal server error" 
+      }
+      ```
+      
+---
+
 ## Add Category
 Add a new category.
 * **URL** <br>
@@ -511,7 +552,8 @@ Add a new task.
 * **URL Params** <br>
 None
 * **Data Params** <br>
-**Required:**
+**Required:** <br>
+Headers: `access_token`
     ```
     {
       "title": "Create user controller",
@@ -564,7 +606,8 @@ Edit the Task you have added.
 * **URL Params** <br>
 id
 * **Data Params** <br>
-**Required:**
+**Required:**<br>
+Headers: `access_token`
     ```
     {
       "title": "Create task controller",
@@ -625,7 +668,8 @@ Edit the task category.
 * **URL Params** <br>
 id
 * **Data Params** <br>
-**Required:**
+**Required:**<br>
+Headers: `access_token`
     ```
     {
       "category_id": "8"
@@ -683,21 +727,12 @@ Get a list of tasks available.
 * **URL Params** <br>
 None
 * **Data Params** <br>
-None
+Headers: `access_token`
 * **Success Response**
 	* **Code:** 200 <br>
 		**Content:**
         ```
         [
-          {
-            "id": 1,
-            "title": "register feature",
-            "category_id": 8,
-            "user_id": 1,
-            "organization_id": 1,
-            "createdAt": "2021-07-10T17:22:25.204Z",
-            "updatedAt": "2021-07-10T17:28:44.421Z"
-          },
           {
             "id": 3,
             "title": "login feature",
@@ -705,16 +740,28 @@ None
             "user_id": 1,
             "organization_id": 1,
             "createdAt": "2021-07-10T17:31:39.509Z",
-            "updatedAt": "2021-07-10T17:31:39.509Z"
+            "updatedAt": "2021-07-10T17:31:39.509Z",
+            "Category": {
+              "id": 5,
+              "name": "backlog",
+              "createdAt": "2021-07-10T16:12:43.893Z",
+              "updatedAt": "2021-07-10T16:12:43.893Z"
+            }
           },
           {
-            "id": 35,
+            "id": 1,
             "title": "register feature",
-            "category_id": 7,
+            "category_id": 8,
             "user_id": 1,
             "organization_id": 1,
-            "createdAt": "2021-07-11T04:32:59.854Z",
-            "updatedAt": "2021-07-11T04:35:11.963Z"
+            "createdAt": "2021-07-10T17:22:25.204Z",
+            "updatedAt": "2021-07-11T04:41:18.063Z",
+            "Category": {
+              "id": 8,
+              "name": "doing",
+              "createdAt": "2021-07-10T16:14:54.626Z",
+              "updatedAt": "2021-07-10T16:14:54.626Z"
+            }
           }
         ]
         ```
@@ -738,7 +785,7 @@ Delete the task you have added.
 * **URL Params** <br>
 id
 * **Data Params** <br>
-None
+Headers: `access_token`
 * **Success Response**
 	* **Code:** 200 <br>
 		**Content:**
